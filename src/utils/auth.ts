@@ -7,18 +7,7 @@ export const setSessionId = (sessionId: string): void => {
 }
 
 export const getSessionId = (): string | null | undefined => {
-    let sessionId: string | null | undefined = null;
-
-    if (localStorage.hasItem('session_id')) {
-        sessionId = localStorage.getItem('session_id');
-    }
-
-    if (sessionId === null || sessionId === undefined) {
-        localStorage.removeItem('session_id');
-        return null;
-    }
-
-    return sessionId;
+    return localStorage.getItem('session_id');
 }
 
 export const removeSessionId = (): void => {

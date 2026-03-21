@@ -5,8 +5,8 @@ import { redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/login')({
   validateSearch: (search: Record<string, unknown>) => {
-    const out: { signedup?: string; redirect?: string } = {}
-    if (typeof search.signedup === 'string') out.signedup = search.signedup
+    const out: { signedup?: boolean; redirect?: string } = {}
+    if (typeof search.signedup === 'boolean') out.signedup = search.signedup
     if (typeof search.redirect === 'string') out.redirect = search.redirect
     return out
   },

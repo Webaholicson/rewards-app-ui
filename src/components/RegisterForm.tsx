@@ -43,7 +43,7 @@ export default function RegisterForm() {
     }).then((response: RegisterResponse) => {
       if (response.status === 200) {
         setSessionId(response.data.sessionToken);
-        navigate({ to: '/login', search: { signedup: 'true' } });
+        navigate({ to: '/login', search: { signedup: true } });
       }
     }).catch((error: RegisterError) => {
       setRegisterError(error.response.data.message);
