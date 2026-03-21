@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { default as api } from '../utils/api';
-import { Link, useNavigate } from '@tanstack/react-router';
+import { Link, useNavigate, useSearch } from '@tanstack/react-router';
 import { AxiosError, type AxiosResponse } from 'axios';
 import { setSessionId } from '#/utils/auth';
 
@@ -39,6 +39,8 @@ export default function LoginForm() {
     });
   }
 
+  const signedup = useSearch({ from: '/login', select: (search) => search.signedup });
+
   return (
     <>
       <div>
@@ -71,6 +73,7 @@ export default function LoginForm() {
             Login
           </button>
           <div className="flex flex-row gap-2 justify-center">Don't have an account? <Link to="/register" className="text-blue-500">Register</Link></div>
+          {signedup && <p className="text-green-600 text-center text-sm">You can sign in with your new account.</p>}
           {loginError && <p className="text-red-500 text-center p-2">{loginError}</p>}
         </form>
       </div>

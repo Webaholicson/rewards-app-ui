@@ -3,7 +3,13 @@ import LoginForm from '@/components/LoginFrom'
 import { isAuthenticated } from '#/utils/auth'
 import { redirect } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/login')({ 
+export const Route = createFileRoute('/login')({
+  validateSearch: (search: Record<string, unknown>) => {
+    const out: { signedup?: string; redirect?: string } = {}
+    if (typeof search.signedup === 'string') out.signedup = search.signedup
+    if (typeof search.redirect === 'string') out.redirect = search.redirect
+    return out
+  },
   component: LoginPage,
   beforeLoad: async () => {
     if (isAuthenticated()) {
